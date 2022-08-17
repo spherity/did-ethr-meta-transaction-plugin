@@ -1,49 +1,48 @@
 {
-  "IMyAgentPlugin": {
+  "IDidEthrMetaTransactionPlugin": {
     "components": {
       "schemas": {
-        "IMyAgentPluginFooArgs": {
+        "IAddAttributeArgs": {
           "type": "object",
           "properties": {
             "did": {
               "type": "string",
-              "description": "Decentralized identifier"
+              "description": "Decentralized identifier that the attribute should be set for"
             },
-            "bar": {
+            "attributeName": {
               "type": "string",
-              "description": "Lorem ipsum"
+              "description": "Name of the attribute to be set"
             },
-            "foo": {
+            "attributeValue": {
               "type": "string",
-              "description": "Dolorem"
+              "description": "Value of the attribute to be set"
             }
           },
           "required": [
             "did",
-            "bar",
-            "foo"
+            "attributeName",
+            "attributeValue"
           ],
-          "description": "Arguments needed for  {@link  MyAgentPlugin.myPluginFoo } \nTo be able to export a plugin schema, your plugin methods should use an `args` parameter of a named type or interface."
+          "description": "Arguments needed for  {@link  IDidEthrMetaTransactionPlugin.addAttribute } \nTo be able to export a plugin schema, your plugin methods should use an `args` parameter of a named type or interface."
         },
-        "IMyAgentPluginFooResult": {
+        "IAddAttributeResult": {
           "type": "object",
           "properties": {
             "foobar": {
               "type": "string"
-            },
-            "baz": {}
+            }
           },
-          "description": "Result of  {@link  MyAgentPlugin.myPluginFoo } \nTo be able to export a plugin schema, your plugin return types need to be Promises of a named type or interface."
+          "description": "Result of  {@link  IDidEthrMetaTransactionPlugin.addAttribute } \nTo be able to export a plugin schema, your plugin return types need to be Promises of a named type or interface."
         }
       },
       "methods": {
-        "myPluginFoo": {
-          "description": "Your plugin method description",
+        "addAttribute": {
+          "description": "Adds an attribute to a DID via the meta transaction wallet",
           "arguments": {
-            "$ref": "#/components/schemas/IMyAgentPluginFooArgs"
+            "$ref": "#/components/schemas/IAddAttributeArgs"
           },
           "returnType": {
-            "$ref": "#/components/schemas/IMyAgentPluginFooResult"
+            "$ref": "#/components/schemas/IAddAttributeResult"
           }
         }
       }

@@ -6,7 +6,7 @@
   "types": "build/index.d.ts",
   "veramo": {
     "pluginInterfaces": {
-      "IMyAgentPlugin": "./src/types/IMyAgentPlugin.ts"
+      "IDidEthrMetaTransactionPlugin": "./src/types/IDidEthrMetaTransactionPlugin.ts"
     }
   },
   "scripts": {

@@ -20,52 +20,51 @@ import { IPluginMethodMap, IAgentContext, IDIDManager, IResolver } from '@veramo
  *
  * @beta
  */
-export interface IMyAgentPlugin extends IPluginMethodMap {
+export interface IDidEthrMetaTransactionPlugin extends IPluginMethodMap {
   /**
-   * Your plugin method description
+   * Adds an attribute to a DID via the meta transaction wallet
    *
    * @param args - Input parameters for this method
    * @param context - The required context where this method can run.
    *   Declaring a context type here lets other developers know which other plugins
    *   need to also be installed for this method to work.
    */
-  myPluginFoo(args: IMyAgentPluginFooArgs, context: IRequiredContext): Promise<IMyAgentPluginFooResult>
+  addAttribute(args: IAddAttributeArgs, context: IRequiredContext): Promise<IAddAttributeResult>
 }
 
 /**
- * Arguments needed for {@link MyAgentPlugin.myPluginFoo}
+ * Arguments needed for {@link IDidEthrMetaTransactionPlugin.addAttribute}
  * To be able to export a plugin schema, your plugin methods should use an `args` parameter of a
  * named type or interface.
  *
  * @beta
  */
-export interface IMyAgentPluginFooArgs {
+export interface IAddAttributeArgs {
   /**
-   * Decentralized identifier
+   * Decentralized identifier that the attribute should be set for
    */
   did: string
 
   /**
-   * Lorem ipsum
+   * Name of the attribute to be set
    */
-  bar: string
+  attributeName: string
 
   /**
-   * Dolorem
+   * Value of the attribute to be set
    */
-  foo: string
+  attributeValue: string
 }
 
 /**
- * Result of {@link MyAgentPlugin.myPluginFoo}
+ * Result of {@link IDidEthrMetaTransactionPlugin.addAttribute}
  * To be able to export a plugin schema, your plugin return types need to be Promises of a
  * named type or interface.
  *
  * @beta
  */
-export type IMyAgentPluginFooResult = {
+export type IAddAttributeResult = {
   foobar?: string
-  baz?: any
 }
 
 /**

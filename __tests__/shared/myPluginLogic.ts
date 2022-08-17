@@ -1,7 +1,7 @@
 import { TAgent, IMessageHandler } from '@veramo/core'
-import { IMyAgentPlugin } from '../../src/types/IMyAgentPlugin'
+import { IDidEthrMetaTransactionPlugin } from '../../src/types/IDidEthrMetaTransactionPlugin'
 
-type ConfiguredAgent = TAgent<IMyAgentPlugin & IMessageHandler>
+type ConfiguredAgent = TAgent<IDidEthrMetaTransactionPlugin & IMessageHandler>
 
 export default (testContext: {
   getAgent: () => ConfiguredAgent
@@ -18,10 +18,10 @@ export default (testContext: {
     afterAll(testContext.tearDown)
 
     it('should foo', async () => {
-      const result = await agent.myPluginFoo({
+      const result = await agent.addAttribute({
         did: 'did:ethr:rinkeby:0xb09b66026ba5909a7cfe99b76875431d2b8d5190',
-        foo: 'lorem',
-        bar: 'ipsum',
+        attributeName: 'lorem',
+        attributeValue: 'ipsum',
       })
       expect(result).toEqual({ foobar: 'ipsum' })
     })
