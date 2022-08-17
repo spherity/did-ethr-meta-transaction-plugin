@@ -19,8 +19,29 @@ export class DidEthrMetaTransactionPlugin implements IAgentPlugin {
     addAttribute: this.addDelegate.bind(this),
   }
 
-  /** {@inheritDoc DidProviderEthrMetaPlugin.myPluginFoo} */
+
+
+  /** {@inheritDoc DidProviderEthrMetaPlugin.addDelegate} */
   private async addDelegate(args: IAddAttributeArgs, context: IRequiredContext): Promise<IAddAttributeResult> {
+    if(!args.did) {
+      throw new Error("DID must not be empty")
+    }
+    if(!args.attributeName) {
+      throw new Error("attributeName must not be empty")
+    }
+    if(!args.attributeValue) {
+      throw new Error("attributeValue must not be empty")
+    }
+
+    const did = await context.agent.didManagerGet({
+      did: args.did
+    })
+    if(!did) {
+      throw new Error("DID not found")
+    }
+    if(did.provider !== 'ethr') {
+      throw new Error("DID provider must be of type ethr")
+    }
     // you can call other agent methods (that are declared in the `IRequiredContext`)
     //const didDoc = await context.agent.resolveDid({ didUrl: args.did })
     // or emit some events
